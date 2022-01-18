@@ -118,8 +118,12 @@ int plusPoint(int &mark)
 {
     if (mark > 10)
     {
-        cout << mark - (mark % 10) << " + " << mark % 10 << "point" << endl;
+        cout << mark - (mark % 10) << " + " << mark % 10 << " point" << endl;
         return 0;
+    }
+    else
+    {
+        cout << mark << endl;
     }
     return mark;
 }
@@ -199,7 +203,7 @@ void answerOFendingTest(test *list, int &mark)
     }
     else if (userSelection == 1)
     {
-        testMenu(list, mark); 
+        //testMenu(list, mark); 
     }
     else if (userSelection == 3)
     {
@@ -377,21 +381,20 @@ int main()
         return 0;
     }
     cout << "\n\tAre you ready to start testing?\tThe time is recorded\nAlways ready! - 1\tNo.. - 0" << endl;
-    bool userSelection;
+    int userSelection;
     cin >> userSelection;
-    if (userSelection == 0)
+    if (userSelection == 0 || userSelection > 1)
     {
         return 0;
     }
     testStarted(); 
     test *list = new test[QUANTITY_OF_TASKS];
-
     cout << "\nWelcome to the test!\tA test of 10 questions.\tOne question - one point.\tBirthday persons +1 to the rating\n"
          << endl;
-    cout << "Your tasks: \n"
-         << printTasksFromFile("tasks.txt") << endl;
-    list->startedTime = currentDateTime();
     writeSudentName(list);
+    cout << "\nThe test start time is recorded\n" << endl;
+    list->startedTime = currentDateTime();
+    cout << "Your tasks: \n" << printTasksFromFile("tasks.txt") << endl;
     testMenu(list, mark);
     cout << "The test is completed!\tYour rating: ";
     studentMark(mark);
